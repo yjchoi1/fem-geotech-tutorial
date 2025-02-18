@@ -1,5 +1,8 @@
 # Finite Element Method Tutorial for Foundation 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yjchoi1/fem-geotech-tutorial/blob/main/main.ipynb)
+> Yongjin Choi
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yjchoi1/fem-geotech-tutorial/blob/main/main.ipynb) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 ## Overview
 
