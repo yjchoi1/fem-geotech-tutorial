@@ -1,4 +1,5 @@
-# Finite Element Method Tutorial for Foundation Analysis
+# Finite Element Method Tutorial for Foundation 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yjchoi1/fem-geotech-tutorial/blob/main/main.ipynb)
 
 ## Overview
 
@@ -35,8 +36,7 @@ Run the main script:
 python main.py
 ```
 
-Or,
-
-We provide Jupyter notebook (`main.ipynb`) that does the same analysis. 
+Or, we provide Jupyter notebook (`main.ipynb`) that does the same analysis: 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yjchoi1/fem-geotech-tutorial/blob/main/main.ipynb)
 
 
