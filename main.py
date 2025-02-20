@@ -109,14 +109,14 @@ def generate_connectivity(params):
     For example, for a 2x2 section of the mesh, the node IDs are arranged as follows:
 
          2 -------- 5 -------- 8     ^ y
-         |          |          |
-         |   el 1   |   el 3   |
-         |          |          |
-         1 -------- 4 -------- 7
-         |          |          |
-         |   el 0   |   el 2   |
-         |          |          |
-         0 -------- 3 -------- 6     ---> x
+         |          |          |     |
+         |   el 1   |   el 3   |     |
+         |          |          |     |
+         1 -------- 4 -------- 7     |
+         |          |          |     |
+         |   el 0   |   el 2   |     |
+         |          |          |     |
+         0 -------- 3 -------- 6      -----> x
 
     Nodes are numbered from bottom-to-top, then left-to-right.
     The connectivity for an element is stored as:
@@ -176,12 +176,7 @@ def assemble_global_stiffness_matrix(params, connectivity):
             for i, xi in enumerate(gauss_points):
                 for j, eta in enumerate(gauss_points):
                     B_local = compute_B(xi, eta, half_width, half_height)
-                    # Map natural coordinate eta (range [-1,1]) to local coordinate in [0,1]
-                    local_eta_mapped = (1 + eta) / 2.0
-                    # Determine the depth (Y) from the surface to the Gauss point
-                    Y_depth = (row + local_eta_mapped) * element_height
-                    # Effective elastic modulus accounting for gradient
-                    E_effective = ground_modulus + modulus_gradient * Y_depth
+                    E_effective = ground_modulus
                     c1 = E_effective * (1 - poisson_ratio) / ((1 + poisson_ratio) * (1 - 2 * poisson_ratio))
                     C_local = np.array([
                         [c1, c1 * poisson_ratio / (1 - poisson_ratio), 0],
@@ -313,10 +308,7 @@ def compute_element_stresses(params, connectivity, U):
             for i, xi in enumerate(gauss_points):
                 for j, eta in enumerate(gauss_points):
                     B_local = compute_B(xi, eta, half_width, half_height)
-                    # Map natural coordinate to [0,1] for integration
-                    local_eta_mapped = (1 + eta) / 2.0
-                    Y_depth = (row + local_eta_mapped) * element_height
-                    E_effective = ground_modulus + modulus_gradient * Y_depth
+                    E_effective = ground_modulus
                     c1 = E_effective * (1 - poisson_ratio) / ((1 + poisson_ratio) * (1 - 2 * poisson_ratio))
                     C_local = np.array([
                         [c1, c1 * poisson_ratio / (1 - poisson_ratio), 0],
